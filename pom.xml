@@ -44,6 +44,11 @@
             <plugin>
                 <groupId>org.graalvm.buildtools</groupId>
                 <artifactId>native-maven-plugin</artifactId>
+                <configuration>
+                    <buildArgs>
+                        -H:ReflectionConfigurationFiles=src/main/resources/reflection-config.json
+                    </buildArgs>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

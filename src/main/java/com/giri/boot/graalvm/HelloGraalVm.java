@@ -21,9 +21,9 @@ public class HelloGraalVm {
     @GetMapping("/accounts")
     public List<Account> accounts() {
         return List.of(
-            new Account("A-1", new BigDecimal(100)),
-            new Account("A-2", new BigDecimal(200.99)),
-            new Account("A-3", new BigDecimal(-200.99))
+            Account.builder().number("A-1").balance(new BigDecimal(100.1239)).build(),
+            Account.builder().number("A-2").balance(new BigDecimal(200.989)).build(),
+            Account.builder().number("A-3").balance(new BigDecimal(-200.99)).build()
         );
     }
 }

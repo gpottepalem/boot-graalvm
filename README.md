@@ -1,6 +1,6 @@
 # Overview
 
-This is simple Hello World Spring Boot REST application which can be built to `native Java`, nothing but a native 
+This is simple Spring Boot REST application which can be built to `native Java`, nothing but a native 
 executable produced using Spring ahead-of-time (AOT) compilation.
 
 A native image can run standalone without relying on a JVM.
