@@ -39,9 +39,13 @@ These additional references should also help you:
 > 
 > **e.g. Using SDKMAN**
 > ```
-> $ sdk install java 22.3.r17-grl  
-> $ sdk use java 22.3.r17-grl
+> $ sdk install java 22.3.r19-grl  
+> $ sdk use java 22.3.r19-grl
 > $ java -version 
+> openjdk version "19.0.1" 2022-10-18  
+> OpenJDK Runtime Environment GraalVM CE 22.3.0 (build 19.0.1+10-jvmci-22.3-b08)
+> OpenJDK 64-Bit Server VM GraalVM CE 22.3.0 (build 19.0.1+10-jvmci-22.3-b08, mixed mode, sharing)
+> $
 > ```
 > 
 ## GraalVM Native Support
@@ -95,3 +99,5 @@ To run your existing tests in a native image, run the following goal:
 $ ./mvnw test -PnativeTest
 ```
 
+### Swagger UI
+Once the app is up and running, just go to http://localhost:8080/swagger-ui/index.html in the browser to test end-points.

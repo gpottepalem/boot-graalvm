@@ -1,6 +1,7 @@
 package com.giri.boot.graalvm.service;
 
 import com.giri.boot.graalvm.domain.Account;
+import com.giri.boot.graalvm.domain.Transaction;
 import com.giri.boot.graalvm.domain.TransactionType;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +27,20 @@ public class AccountServiceImpl implements AccountService{
     @Override
     public Account withdraw(@NonNull Account account, @NonNull BigDecimal amount) {
         return executeAccountTransaction(account, TransactionType.WITHDRAWAL, amount);
+    }
+
+    private Account transact(@NonNull Transaction transaction) {
+        switch (transaction.transactionType()) {
+            case WITHDRAWAL -> {
+                var balance = transaction.account().getBalance();
+                if (balance.subtract(transaction.amount()).compareTo(BigDecimal.valueOf(0)) == -1) {
+                    throw new IllegalArgumentException("Amount for withdrawal: " + transaction.amount() + " exceeds current balance.");
+                }
+                transaction.account().setBalance(transaction.account().getBalance().subtract(transaction.amount()));
+            }
+            case DEPOSIT -> transaction.account().setBalance(transaction.account().getBalance().add(transaction.amount()));
+        }
+        return transaction.account();
     }
 
     private Account executeAccountTransaction(@NonNull Account account, @NonNull TransactionType transactionType, @NonNull BigDecimal amount) {

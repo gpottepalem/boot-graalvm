@@ -11,9 +11,19 @@ import java.math.BigDecimal;
  * created May 12, 2023
  */
 public interface AccountService {
-    /** Deposits given amount into the Account */
+    /**
+     * Deposits given amount into the Account
+     * @param account the account
+     * @param amount the amount
+     * @return updated account
+     */
     Account deposit(Account account, BigDecimal amount);
 
-    /** Withdraws given amount from the Account */
+    /**
+     * Withdraws given amount from the Account
+     * @param account the account
+     * @param amount the amount
+     * @return updated account
+     */
     Account withdraw(Account account, BigDecimal amount);
 }
