@@ -5,6 +5,14 @@ executable produced using Spring ahead-of-time (AOT) compilation.
 
 A native image can run standalone without relying on a JVM.
 
+## The following are the dependencies chosen [from](https://start.spring.io/)
+```
+Project      : Maven  
+Languge      : Java 20  
+Spring Boot  : 3.1.2  
+Packaging    : Jar
+Dependencies : Lombok, GraalVM Native Support, Spring Web,
+```
 # Getting Started
 
 ### Reference Documentation
@@ -39,12 +47,12 @@ These additional references should also help you:
 > 
 > **e.g. Using SDKMAN**
 > ```
-> $ sdk install java 22.3.r19-grl  
-> $ sdk use java 22.3.r19-grl
+> $ sdk install java 20.0.2-graal 
+> $ sdk use java 20.0.2-graal
 > $ java -version 
-> openjdk version "19.0.1" 2022-10-18  
-> OpenJDK Runtime Environment GraalVM CE 22.3.0 (build 19.0.1+10-jvmci-22.3-b08)
-> OpenJDK 64-Bit Server VM GraalVM CE 22.3.0 (build 19.0.1+10-jvmci-22.3-b08, mixed mode, sharing)
+> java version "20.0.2" 2023-07-18
+> Java(TM) SE Runtime Environment Oracle GraalVM 20.0.2+9.1 (build 20.0.2+9-jvmci-23.0-b14)
+> Java HotSpot(TM) 64-Bit Server VM Oracle GraalVM 20.0.2+9.1 (build 20.0.2+9-jvmci-23.0-b14, mixed mode, sharing)
 > $
 > ```
 > 
@@ -82,7 +90,7 @@ $ ./mvnw native:compile -Pnative
 ### Running
 Then, you can run the app as follows:
 ```
-$ target/target/boot-graalvm
+$ target/boot-graalvm
 ```
 
 Once the app is running, run the following `curl` command from another terminal window:
