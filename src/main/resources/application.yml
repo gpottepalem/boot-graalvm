@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: @project.name@
+
+# custom property for banner
+app:
+  version: @project.version@

@@ -9,7 +9,7 @@ A native image can run standalone without relying on a JVM.
 ```
 Project      : Maven  
 Languge      : Java 20  
-Spring Boot  : 3.1.2  
+Spring Boot  : 3.1.4
 Packaging    : Jar
 Dependencies : Lombok, GraalVM Native Support, Spring Web,
 ```
