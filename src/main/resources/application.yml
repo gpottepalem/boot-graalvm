@@ -10,3 +10,6 @@ management:
   info:
     java:
       enabled: true
+    git:
+      mode: full
+      enabled: true
