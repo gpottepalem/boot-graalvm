@@ -5,3 +5,8 @@ spring:
 # custom property for banner
 app:
   version: @project.version@
+
+management:
+  info:
+    java:
+      enabled: true
