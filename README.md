@@ -7,8 +7,8 @@ A native image can run standalone without relying on a JVM.
 
 ## The following are the dependencies chosen [from](https://start.spring.io/)
 ```
-Project      : Maven  
-Languge      : Java 20  
+Project      : Maven 3.9.5  
+Languge      : Java 21  
 Spring Boot  : 3.1.4
 Packaging    : Jar
 Dependencies : Lombok, GraalVM Native Support, Spring Web,
@@ -47,12 +47,12 @@ These additional references should also help you:
 > 
 > **e.g. Using SDKMAN**
 > ```
-> $ sdk install java 20.0.2-graal 
-> $ sdk use java 20.0.2-graal
+> $ sdk install java 21-graal 
+> $ sdk use java 21-graal
 > $ java -version 
-> java version "20.0.2" 2023-07-18
-> Java(TM) SE Runtime Environment Oracle GraalVM 20.0.2+9.1 (build 20.0.2+9-jvmci-23.0-b14)
-> Java HotSpot(TM) 64-Bit Server VM Oracle GraalVM 20.0.2+9.1 (build 20.0.2+9-jvmci-23.0-b14, mixed mode, sharing)
+> java version "21" 2023-09-19
+> Java(TM) SE Runtime Environment Oracle GraalVM 21+35.1 (build 21+35-jvmci-23.1-b15)
+> Java HotSpot(TM) 64-Bit Server VM Oracle GraalVM 21+35.1 (build 21+35-jvmci-23.1-b15, mixed mode, sharing)
 > $
 > ```
 > 
