@@ -40,7 +40,7 @@ These additional references should also help you:
 * [Reference](https://blogs.oracle.com/java/post/go-native-with-spring-boot-3-and-graalvm)
 
 # Build
-
+## GraalVM
 > **NOTE**: GraalVM 22.3+ is required.  
 > 
 > Make sure that your `JAVA_HOME points` to GraalVM JDK distribution.  
@@ -61,7 +61,7 @@ These additional references should also help you:
 This project has been configured to let you generate either a lightweight container or a native executable.
 It is also possible to run your tests in a native image.
 
-### Lightweight Container with Cloud Native Buildpacks
+### 1. Lightweight Container with Cloud Native Buildpacks
 If you're already familiar with Spring Boot container images support, this is the easiest way to get started.
 Docker should be installed and configured on your machine prior to creating the image.
 
@@ -77,7 +77,7 @@ Then, you can run the app like any other container:
 $ docker run --rm -p 8080:8080 boot-graalvm:0.0.1-SNAPSHOT
 ```
 
-### Executable with Native Build Tools
+### 2.  Building GraalVM Native Image(Executable) with Native Build Tools
 Use this option if you want to explore more options such as running your tests in a native image.
 The GraalVM `native-image` compiler should be installed and configured on your machine.
 
@@ -87,7 +87,7 @@ To create the executable, run the following goal:
 $ ./mvnw native:compile -Pnative
 ```
 
-### Running
+## Running
 Then, you can run the app as follows:
 ```
 $ target/boot-graalvm
@@ -107,5 +107,5 @@ To run your existing tests in a native image, run the following goal:
 $ ./mvnw test -PnativeTest
 ```
 
-### Swagger UI
+## Swagger UI
 Once the app is up and running, just go to http://localhost:8080/swagger-ui/index.html in the browser to test end-points.
