@@ -17,6 +17,7 @@
         <java.version>21</java.version>
         <spring.boot.version>${parent.version}</spring.boot.version>
         <surefire.plugin.version>3.2.1</surefire.plugin.version>
+        <jacoco-maven-plugin.version>0.8.11</jacoco-maven-plugin.version>
     </properties>
     <dependencies>
         <dependency>
@@ -149,15 +150,35 @@
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
-                    <argLine>--enable-preview</argLine>
+                    <argLine>@{argLine} --enable-preview</argLine>
                 </configuration>
             </plugin>
             <!-- integration tests -->
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <configuration>
-                    <argLine>--enable-preview</argLine>
+                    <argLine>@{argLine} --enable-preview</argLine>
                 </configuration>
+            </plugin>
+            <!-- jacoco for code coverage -->
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

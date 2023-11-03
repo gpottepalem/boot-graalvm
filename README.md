@@ -9,7 +9,7 @@ A native image can run standalone without relying on a JVM.
 ```
 Project      : Maven 3.9.5  
 Languge      : Java 21  
-Spring Boot  : 3.1.4
+Spring Boot  : 3.1.5
 Packaging    : Jar
 Dependencies : Lombok, GraalVM Native Support, Spring Web,
 ```
@@ -107,5 +107,17 @@ To run your existing tests in a native image, run the following goal:
 $ ./mvnw test -PnativeTest
 ```
 
+## Code Coverage Reports
+```
+$ ./mvnw clen install
+```
+
+Open index.html in browser from `<project-home>/target/site/index.html` for [JaCoCo](https://www.eclemma.org/jacoco/) 
+Code Coverage Reports. 
+
 ## Swagger UI
 Once the app is up and running, just go to http://localhost:8080/swagger-ui/index.html in the browser to test end-points.
+
+## Actuator
+http://localhost:8080/actuator
+
