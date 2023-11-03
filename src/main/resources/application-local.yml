@@ -1,0 +1,8 @@
+spring:
+  config:
+    activate:
+      on-profile: local
+
+app:
+  greeting:
+    message: running in Local

@@ -10,6 +10,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.info.BuildProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
+
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 /**
  * OPEN API configuration
@@ -21,6 +26,9 @@ import org.springframework.context.annotation.Configuration;
 public class OpenApiConfig {
     @Value("${spring.doc.baseURI:http://localhost:8080}")
     String baseURI;
+
+    @Autowired
+    Environment env;
 
     @Autowired
     BuildProperties buildProperties;
@@ -37,10 +45,23 @@ public class OpenApiConfig {
                    .info(new Info()
                              .title(buildProperties.get("name"))
                              .description(
-                                 "OpenAPI 3 spec for " + buildProperties.get("name") + "<br/><br/>" +
-                                     "Version: " + buildProperties.get("version") + "<br/>" +
-                                     "Java Version: " + buildProperties.get("java.version") + "<br/>" +
-                                     "Spring Boot Version: " + buildProperties.get("spring.boot.version")
+                                 STR."""
+                                     <pre>
+                                     OpenAPI 3 spec for  : \{buildProperties.get("name")}
+                                     App Version         : \{buildProperties.get("version")}
+                                     Java Version        : \{buildProperties.get("java.version")}
+                                     Spring Boot Version : \{buildProperties.get("spring.boot.version")}
+                                     Git Branch          : \{env.getProperty("git.branch")}
+                                         Commit Id       : \{env.getProperty("git.commit.id.full")}
+                                         Message         : \{env.getProperty("git.commit.message.full")}
+                                         Built at        : \{
+                                            ZonedDateTime.parse(
+                                                env.getProperty("git.build.time"), DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssZ")
+                                            ).format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM))
+                                         }
+                                         Build User      : \{env.getProperty("git.build.user.name")}
+                                     </pre>
+                                     """
                              )
                    );
     }

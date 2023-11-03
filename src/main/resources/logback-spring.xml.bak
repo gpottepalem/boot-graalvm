@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Logback configuration to log messages in JSON format.
+  See: logstash-logback-encoder dependency in pom.xml
+-->
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+
+    <springProperty scope="context" name="serviceName" source="spring.zipkin.service.name"/>
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <pattern>
+                    <pattern>
+                        {
+                            "timestamp": "%d{yyyy-MM-dd HH:mm:ss.SSS}",
+                            "severity": "%level",
+                            "service": "${serviceName:-}",
+                            "pid": "${PID:-}",
+                            "thread": "%thread",
+                            "class": "%logger{40}",
+                            "trace": "%X{traceId:-}",
+                            "span": "%X{spanId:-}",
+                            "parent": "%X{parentId:-}",
+                            "exportable": "%X{sampled:-}",
+                            "logmessage": "%message"
+                        }
+                    </pattern>
+                </pattern>
+                <!-- https://github.com/logfellow/logstash-logback-encoder -->
+                <stackTrace>
+                    <throwableConverter class="net.logstash.logback.stacktrace.ShortenedThrowableConverter">
+                        <maxDepthPerThrowable>30</maxDepthPerThrowable>
+                        <maxLength>4096</maxLength>
+                        <shortenedClassNameLength>20</shortenedClassNameLength>
+                        <rootCauseFirst>true</rootCauseFirst>
+                    </throwableConverter>
+                </stackTrace>
+            </providers>
+        </encoder>
+    </appender>
+    <root level="INFO">
+        <appender-ref ref="console" />
+    </root>
+    <logger name="org.spring" level="debug"/>
+</configuration>

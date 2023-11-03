@@ -88,9 +88,9 @@ $ ./mvnw native:compile -Pnative
 ```
 
 ## Running
-Then, you can run the app as follows:
+Then, you can run the app as follows for local profile:
 ```
-$ target/boot-graalvm
+$ target/boot-graalvm -Dspring.profiles.active=local
 ```
 
 Once the app is running, run the following `curl` command from another terminal window:

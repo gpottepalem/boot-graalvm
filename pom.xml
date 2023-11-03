@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.1.4</version>
+        <version>3.1.5</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
@@ -16,6 +16,7 @@
     <properties>
         <java.version>21</java.version>
         <spring.boot.version>${parent.version}</spring.boot.version>
+        <surefire.plugin.version>3.2.1</surefire.plugin.version>
     </properties>
     <dependencies>
         <dependency>
@@ -26,10 +27,17 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
+        <!-- Open API Swagger -->
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-            <version>2.1.0</version>
+            <version>2.2.0</version>
+        </dependency>
+        <!-- custom logging in JSON format for logstash aggregator flexibility -->
+        <dependency>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
+            <version>7.4</version>
         </dependency>
 
         <dependency>
@@ -51,16 +59,26 @@
                 <directory>${project.basedir}/src/main/resources/</directory>
             </resource>
         </resources>
+        <testResources>
+            <testResource>
+                <filtering>true</filtering>
+                <directory>${project.basedir}/src/test/resources/</directory>
+            </testResource>
+        </testResources>
         <plugins>
             <plugin>
                 <groupId>org.graalvm.buildtools</groupId>
                 <artifactId>native-maven-plugin</artifactId>
                 <configuration>
                     <buildArgs>
-                        -H:ReflectionConfigurationFiles=src/main/resources/reflection-config.json
+                        <buildArg>-H:ReflectionConfigurationFiles=src/main/resources/reflection-config.json</buildArg>
+                        <buildArg>--enable-preview</buildArg>
                     </buildArgs>
                 </configuration>
             </plugin>
+
+            <!-- Spring Boot Maven Plugin -->
+            <!-- https://docs.spring.io/spring-boot/docs/current/maven-plugin/reference/htmlsingle/ -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -86,8 +104,13 @@
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
+                    <jvmArguments>--enable-preview</jvmArguments>
+                    <compilerArguments>--enable-preview</compilerArguments>
                 </configuration>
             </plugin>
+
+            <!-- git commit id plugin -->
+            <!-- https://www.baeldung.com/spring-git-information -->
             <plugin>
                 <groupId>io.github.git-commit-id</groupId>
                 <artifactId>git-commit-id-maven-plugin</artifactId>
@@ -103,11 +126,37 @@
                 <configuration>
                     <generateGitPropertiesFile>true</generateGitPropertiesFile>
                     <generateGitPropertiesFilename>${project.build.outputDirectory}/git.properties</generateGitPropertiesFilename>
-                    <includeOnlyProperties>
-                        <includeOnlyProperty>^git.build.(time|version)$</includeOnlyProperty>
-                        <includeOnlyProperty>^git.commit.id.(abbrev|full)$</includeOnlyProperty>
-                    </includeOnlyProperties>
+<!--                    <includeOnlyProperties>-->
+<!--                        <includeOnlyProperty>^git.build.(time|version)$</includeOnlyProperty>-->
+<!--                        <includeOnlyProperty>^git.commit.id.(abbrev|full)$</includeOnlyProperty>-->
+<!--                    </includeOnlyProperties>-->
                     <commitIdGenerationMode>full</commitIdGenerationMode>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>21</source>
+                    <target>21</target>
+                    <release>${java.version}</release>
+                    <enablePreview>true</enablePreview>
+                    <compilerArgs>--enable-preview</compilerArgs>
+                </configuration>
+            </plugin>
+
+            <!-- unit tests -->
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <argLine>--enable-preview</argLine>
+                </configuration>
+            </plugin>
+            <!-- integration tests -->
+            <plugin>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <configuration>
+                    <argLine>--enable-preview</argLine>
                 </configuration>
             </plugin>
         </plugins>

@@ -1,0 +1,3 @@
+app:
+  greeting:
+    message: running in Test
