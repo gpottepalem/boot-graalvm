@@ -108,12 +108,13 @@ $ ./mvnw test -PnativeTest
 ```
 
 ## Code Coverage Reports
+Run one of the following and open `index.html` in browser from `<project-home>/target/site/index.html` 
+for [JaCoCo](https://www.eclemma.org/jacoco/) Code Coverage Reports.:
 ```
 $ ./mvnw clen install
+$ ./mvnw clean test
+$ ./mvnw native:compile -Pnative
 ```
-
-Open index.html in browser from `<project-home>/target/site/index.html` for [JaCoCo](https://www.eclemma.org/jacoco/) 
-Code Coverage Reports. 
 
 ## Swagger UI
 Once the app is up and running, just go to http://localhost:8080/swagger-ui/index.html in the browser to test end-points.
