@@ -1,4 +1,4 @@
-# Overview
+# Boot GraalVM  [![Build Status](https://github.com/gpottepalem/boot-graalvm/actions/workflows/main.yml/badge.svg)](https://github.com/gpottepalem/boot-graalvm/actions/workflows/main.yml/badge.svg)
 
 This is simple Spring Boot REST application which can be built to `native Java`, nothing but a native 
 executable produced using Spring ahead-of-time (AOT) compilation.
