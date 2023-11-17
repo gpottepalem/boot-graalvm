@@ -1,22 +1,29 @@
 # https://github.com/marketplace/actions/github-action-for-graalvm
 
-name: GraalVM build
-on: [push, pull_request]
+name: Build pull request
+#on: [push, pull_request]
+on: pull_request
 jobs:
   build:
+    name: Build pull request
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: graalvm/setup-graalvm@v1
+      - name: Setup GraalVM 21
+        uses: graalvm/setup-graalvm@v1
         with:
           java-version: '21'
           distribution: 'graalvm' # See 'Options' for all available distributions
           github-token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Example step
+
+      - name: Check Java version and GraalVM native-image tool (ahead-of-time compile Java code to native executables) version
         run: |
           echo "GRAALVM_HOME: $GRAALVM_HOME"
           echo "JAVA_HOME: $JAVA_HOME"
           java --version
           native-image --version
-      - name: Example step using Maven plugin  # https://graalvm.github.io/native-build-tools/latest/maven-plugin.html
+
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Build # https://graalvm.github.io/native-build-tools/latest/maven-plugin.html
         run: mvn -Pnative package
