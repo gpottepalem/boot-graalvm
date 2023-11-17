@@ -1,4 +1,6 @@
-# Boot GraalVM  [![Build Status](https://github.com/gpottepalem/boot-graalvm/actions/workflows/main.yml/badge.svg)](https://github.com/gpottepalem/boot-graalvm/actions/workflows/main.yml/badge.svg)
+# Boot GraalVM
+[![Build Status](https://github.com/gpottepalem/boot-graalvm/actions/workflows/main.yml/badge.svg)](https://github.com/gpottepalem/boot-graalvm/actions/workflows/main.yml/badge.svg)
+[![Known Vulnerabilities](https://snyk.io/test/github/gpottepalem/boot-graalvm/badge.svg?targetFile=pom.xml)](https://snyk.io/test/github/gpottepalem/boot-graalvm?targetFile=pom.xml)
 
 This is simple Spring Boot REST application which can be built to `native Java`, nothing but a native 
 executable produced using Spring ahead-of-time (AOT) compilation.
