@@ -18,18 +18,13 @@ import java.math.BigDecimal;
 @Service
 @Slf4j
 public class AccountServiceImpl implements AccountService{
-
-    @Override
-    public Account deposit(@NonNull Account account, @NonNull BigDecimal amount) {
-        return executeAccountTransaction(account, TransactionType.DEPOSIT, amount);
-    }
-
-    @Override
-    public Account withdraw(@NonNull Account account, @NonNull BigDecimal amount) {
-        return executeAccountTransaction(account, TransactionType.WITHDRAWAL, amount);
-    }
-
-    private Account transact(@NonNull Transaction transaction) {
+    /**
+     * Conducts a transaction
+     *
+     * @param transaction
+     * @return the updated account
+     */
+    private Account transact(Transaction transaction) {
         switch (transaction.transactionType()) {
             case WITHDRAWAL -> {
                 var balance = transaction.account().getBalance();
@@ -43,17 +38,25 @@ public class AccountServiceImpl implements AccountService{
         return transaction.account();
     }
 
-    private Account executeAccountTransaction(@NonNull Account account, @NonNull TransactionType transactionType, @NonNull BigDecimal amount) {
-        switch (transactionType) {
-            case WITHDRAWAL -> {
-                var balance = account.getBalance();
-                if (balance.subtract(amount).compareTo(BigDecimal.valueOf(0)) == -1) {
-                    throw new IllegalArgumentException("Amount for withdrawal: " + amount + " exceeds current balance.");
-                }
-                account.setBalance(account.getBalance().subtract(amount));
-            }
-            case DEPOSIT -> account.setBalance(account.getBalance().add(amount));
-        }
-        return account;
+    /**
+     * Executes account transaction
+     *
+     * @param account
+     * @param transactionType
+     * @param amount
+     * @return
+     */
+    private Account executeAccountTransaction(Account account, TransactionType transactionType, BigDecimal amount) {
+        return transact(new Transaction(account, transactionType, amount));
+    }
+
+    @Override
+    public Account deposit(@NonNull Account account, @NonNull BigDecimal amount) {
+        return executeAccountTransaction(account, TransactionType.DEPOSIT, amount);
+    }
+
+    @Override
+    public Account withdraw(@NonNull Account account, @NonNull BigDecimal amount) {
+        return executeAccountTransaction(account, TransactionType.WITHDRAWAL, amount);
     }
 }
