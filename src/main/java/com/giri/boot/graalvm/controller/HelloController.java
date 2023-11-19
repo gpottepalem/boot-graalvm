@@ -26,7 +26,7 @@ public class HelloController {
 
     @GetMapping("/")
     public String greet() {
-        return "Welcome to %s %s! Active Profiles: %s\n".formatted(
+        return "Welcome to %s %s! Active Profiles: %s".formatted(
             environment.getProperty("spring.application.name"),
             message,
             (environment.getActiveProfiles().length > 0) ?
