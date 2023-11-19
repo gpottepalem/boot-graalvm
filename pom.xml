@@ -46,11 +46,27 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
+
+        <!-- unit/integrations testing dependencies -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <!-- spock -->
+        <dependency>
+            <groupId>org.spockframework</groupId>
+            <artifactId>spock-core</artifactId>
+            <version>2.4-M1-groovy-4.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.spockframework</groupId>
+            <artifactId>spock-spring</artifactId>
+            <version>2.4-M1-groovy-4.0</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -146,18 +162,47 @@
                 </configuration>
             </plugin>
 
+            <!-- https://maven.apache.org/surefire/maven-surefire-plugin/examples/spock.html -->
+            <!-- compile groovy Spock tests -->
+            <plugin>
+                <groupId>org.codehaus.gmavenplus</groupId>
+                <artifactId>gmavenplus-plugin</artifactId>
+                <version>3.0.2</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compileTests</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <!-- unit tests -->
+            <!-- https://maven.apache.org/surefire/maven-surefire-plugin/examples/spock.html -->
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
                     <argLine>@{argLine} --enable-preview</argLine>
+                    <!-- https://maven.apache.org/surefire/maven-surefire-plugin/examples/inclusion-exclusion.html -->
+                    <!-- Consider both Java Tests and Spock Specs -->
+                    <includes>
+                        <include>**/*Tests.*</include>
+                        <include>**/*Spec.*</include>
+                    </includes>
                 </configuration>
             </plugin>
+
             <!-- integration tests -->
+            <!-- https://maven.apache.org/surefire/maven-failsafe-plugin/examples/spock.html -->
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <configuration>
                     <argLine>@{argLine} --enable-preview</argLine>
+                    <!-- https://maven.apache.org/surefire/maven-failsafe-plugin/examples/inclusion-exclusion.html -->
+                    <!-- Consider both Java Tests and Spock Specs -->
+                    <includes>
+                        <include>**/*IntegrationTests.*</include>
+                        <include>**/*IntegrationSpec.*</include>
+                    </includes>
                 </configuration>
             </plugin>
             <!-- jacoco for code coverage -->
@@ -196,7 +241,7 @@
                                         <limit>
                                             <counter>INSTRUCTION</counter>
                                             <value>COVEREDRATIO</value>
-                                            <minimum>0.96</minimum>
+                                            <minimum>1.0</minimum>
                                         </limit>
                                     </limits>
                                 </rule>
