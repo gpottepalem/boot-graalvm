@@ -109,6 +109,17 @@ To run your existing tests in a native image, run the following goal:
 $ ./mvnw test -PnativeTest
 ```
 
+## Unit Tests, and Integration Tests
+With added [Spock](https://github.com/spockframework/spock) support ([spock-core](https://mvnrepository.com/artifact/org.spockframework/spock-core) and 
+[spock-spring](https://mvnrepository.com/artifact/org.spockframework/spock-spring)), test cases can be written 
+ as [JUnit 5](https://junit.org/junit5/) or [Spock](https://spockframework.org/) specifications in both 
+[Java](https://dev.java/) and [Groovy](https://groovy-lang.org/).
+
+Maven [Suerfire](https://maven.apache.org/surefire/maven-surefire-plugin/) and 
+[Failsafe](https://maven.apache.org/surefire/maven-failsafe-plugin/) plugins are configured to run both 
+[Java](https://dev.java/) [JUnit 5](https://junit.org/junit5/) Tests
+and [Groovy](https://groovy-lang.org/) [Spock](https://github.com/spockframework/spock)  Specifications.
+
 ## Code Coverage Reports
 Run one of the following and open `index.html` in browser from `<project-home>/target/site/index.html` 
 for [JaCoCo](https://www.eclemma.org/jacoco/) Code Coverage Reports.:
