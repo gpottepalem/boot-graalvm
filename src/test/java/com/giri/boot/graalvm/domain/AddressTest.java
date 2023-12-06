@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @author pottepalemg
  * created May 08, 2023
  */
-public class AddressTests {
+public class AddressTest {
     @Test
     void assertj_examine_object() {
         // given new address

@@ -23,7 +23,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @JsonTest
 @ActiveProfiles("test")
 @ExtendWith(SpringExtension.class)
-public class AccountIntegrationTests {
+public class AccountIT {
     @Autowired
     private JacksonTester<Account> json;
 

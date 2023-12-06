@@ -120,6 +120,32 @@ Maven [Suerfire](https://maven.apache.org/surefire/maven-surefire-plugin/) and
 [Java](https://dev.java/) [JUnit 5](https://junit.org/junit5/) Tests
 and [Groovy](https://groovy-lang.org/) [Spock](https://github.com/spockframework/spock)  Specifications.
 
+### Tests skip flags  
+`-DskipTests` skips all tests  
+`-DskipUnitTests` skips all unit tests but not integration tests  
+`-DskipIntegrationTests` skips all integration tests, but not unit tests  
+
+### Example Maven commands 
+```
+# Run all unit tests
+./mvnw test
+# Run specific unit test
+./mvnw test -Dtest=HelloControllerTest
+
+#TODO Run specific unit tet method
+
+# Run all integration tests, skip unit tests
+./mvnw integration-test -DskipUnitTests
+
+# Run specific integration test, skip unit tests
+./mvnw integration-test -Dit.test=AccountServiceIT -DskipUnitTests
+
+# Run specific integration test, and unit tests
+./mvnw integration-test -Dit.test=HelloControllerIS
+
+#TODO Run specific integration tet method
+```
+
 ## Code Coverage Reports
 Run one of the following and open `index.html` in browser from `<project-home>/target/site/index.html` 
 for [JaCoCo](https://www.eclemma.org/jacoco/) Code Coverage Reports.:
