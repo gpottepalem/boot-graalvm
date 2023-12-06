@@ -1,0 +1,8 @@
+### The app root
+GET http://localhost:8080
+
+### accounts
+GET http://localhost:8080/accounts
+
+### greet
+GET http://localhost:8080/greet

@@ -13,3 +13,8 @@ management:
     git:
       mode: full
       enabled: true
+
+logging:
+  level:
+    root: INFO
+    org.springframework: INFO

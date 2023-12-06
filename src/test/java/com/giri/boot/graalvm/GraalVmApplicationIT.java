@@ -20,7 +20,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
 @ActiveProfiles("test")
-public class GraalVmApplicationIntegrationTests {
+public class GraalVmApplicationIT {
     @Autowired
     ApplicationContext applicationContext;
 

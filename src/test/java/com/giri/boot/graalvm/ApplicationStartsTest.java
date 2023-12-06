@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
  * @author pottepalemg
  * created Nov 18, 2023
  */
-public class ApplicationStartsTests {
+public class ApplicationStartsTest {
     /**
      * To cover main method not covered by any tests
      */

@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.*;
  * Unit test for {@link GraalVmApplication} context
  */
 @SpringBootTest
-class GraalVmApplicationTests {
+class GraalVmApplicationTest {
     @Autowired
     ApplicationContext applicationContext;
 
