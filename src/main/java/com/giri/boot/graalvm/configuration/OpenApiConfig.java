@@ -47,19 +47,19 @@ public class OpenApiConfig {
                              .description(
                                  STR."""
                                      <pre>
-                                     OpenAPI 3 spec for  : \{buildProperties.get("name")}
+                                     OpenAPI 3 spec for  : \{buildProperties.get("name")}<br/>
                                      App Version         : \{buildProperties.get("version")}
                                      Java Version        : \{buildProperties.get("java.version")}
-                                     Spring Boot Version : \{buildProperties.get("spring.boot.version")}
+                                     Spring Boot Version : \{buildProperties.get("spring.boot.version")}<br/>
                                      Git Branch          : \{env.getProperty("git.branch")}
-                                         Commit Id       : \{env.getProperty("git.commit.id.full")}
-                                         Message         : \{env.getProperty("git.commit.message.full")}
                                          Built at        : \{
                                             ZonedDateTime.parse(
                                                 env.getProperty("git.build.time"), DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssZ")
                                             ).format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM))
                                          }
                                          Build User      : \{env.getProperty("git.build.user.name")}
+                                         Commit Id       : \{env.getProperty("git.commit.id.full")}
+                                         Message         : \{env.getProperty("git.commit.message.full").replaceAll("\n", "<br/>")}
                                      </pre>
                                      """
                              )
