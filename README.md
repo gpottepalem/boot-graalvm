@@ -9,9 +9,9 @@ A native image can run standalone without relying on a JVM.
 
 ## The following are the dependencies chosen [from](https://start.spring.io/)
 ```
-Project      : Maven 3.9.5  
+Project      : Maven 3.9.6 
 Languge      : Java 21  
-Spring Boot  : 3.2.0
+Spring Boot  : 3.2.1
 Packaging    : Jar
 Dependencies : Lombok, GraalVM Native Support, Spring Web, Testcontainers
 ```
