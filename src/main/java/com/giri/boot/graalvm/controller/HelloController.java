@@ -1,6 +1,7 @@
 package com.giri.boot.graalvm.controller;
 
 import com.giri.boot.graalvm.domain.Account;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
@@ -17,6 +18,7 @@ import java.util.stream.Collectors;
  * created Apr 12, 2023
  */
 @RestController
+@Slf4j
 public class HelloController {
     @Value("${app.greeting.message:in Default}")
     private String message;
@@ -26,6 +28,7 @@ public class HelloController {
 
     @GetMapping("/")
     public String greet() {
+        log.info("Request for greet...");
         return "Welcome to %s %s! Active Profiles: %s".formatted(
             environment.getProperty("spring.application.name"),
             message,
@@ -37,6 +40,7 @@ public class HelloController {
 
     @GetMapping("/accounts")
     public List<Account> accounts() {
+        log.info("Request for accounts...");
         return List.of(
             Account.builder().number("A-1").balance(new BigDecimal(100.1239)).build(),
             Account.builder().number("A-2").balance(new BigDecimal(200.989)).build(),
