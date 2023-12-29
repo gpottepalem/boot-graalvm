@@ -13,7 +13,13 @@ public class ApplicationStartsTest {
      * To cover main method not covered by any tests
      */
     @Test
-    void applicationStarts() {
-        GraalVmApplication.main(new String[]{});
+    void application_starts() {
+        GraalVmApplication.main(
+            new String[]{
+                "--spring.profiles.active=local",
+                "--spring.docker.compose.skip.in-tests=false",
+                "--spring.docker.compose.file=docker/docker-compose.yaml"
+            }
+        );
     }
 }
