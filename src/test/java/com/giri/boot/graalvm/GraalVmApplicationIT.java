@@ -1,9 +1,9 @@
 package com.giri.boot.graalvm;
 
 import com.giri.boot.graalvm.config.TestContainersConfiguration;
+import com.giri.boot.graalvm.controller.HelloController;
 import com.giri.boot.graalvm.service.AccountService;
 import com.giri.boot.graalvm.service.AccountServiceImpl;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,6 +11,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
 import org.testcontainers.containers.PostgreSQLContainer;
+
+import static org.assertj.core.api.Assertions.*;
 
 /**
  * Integration test for {@link GraalVmApplication}
@@ -26,13 +28,23 @@ public class GraalVmApplicationIT {
     ApplicationContext applicationContext;
 
     @Autowired
+    HelloController helloController;
+
+    @Autowired
+    AccountService accountService;
+
+    @Autowired
     PostgreSQLContainer postgreSQLContainer;
 
     @Test
-    void context_loads() {
+    void context_loads_and_autowiring_works() {
+        assertThat(applicationContext).isNotNull();
+        assertThat(helloController).isNotNull();
+        assertThat(accountService).isNotNull();
+
         var accountService = applicationContext.getBean(AccountService.class);
-        Assertions.assertThat(accountService).isInstanceOf(AccountServiceImpl.class);
-        Assertions.assertThat(postgreSQLContainer).isInstanceOf(PostgreSQLContainer.class);
+        assertThat(accountService).isInstanceOf(AccountServiceImpl.class);
+        assertThat(postgreSQLContainer).isInstanceOf(PostgreSQLContainer.class);
     }
 
 }

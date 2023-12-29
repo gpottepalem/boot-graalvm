@@ -15,7 +15,7 @@ import org.testcontainers.utility.DockerImageName;
 @Slf4j
 public class TestContainersConfiguration {
     // https://codereviewvideos.com/postgres-16-docker-workaround-program-postgres-is-needed-by-initdb/
-    private static final String POSTGRES_IMAGE_TAG = "postgres:16-alpine"; // Issue: postgres:latest or postgres:16
+    private static final String POSTGRES_IMAGE_TAG = "postgres:16"; // Issue: postgres:latest or postgres:16, 16-alpine
 
     @Bean
     @ServiceConnection

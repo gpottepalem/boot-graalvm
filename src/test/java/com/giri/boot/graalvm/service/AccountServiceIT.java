@@ -1,13 +1,14 @@
 package com.giri.boot.graalvm.service;
 
+import com.giri.boot.graalvm.config.TestContainersConfiguration;
 import com.giri.boot.graalvm.domain.Account;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
-import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.math.BigDecimal;
 
@@ -18,7 +19,7 @@ import static org.assertj.core.api.Assertions.*;
  * created May 12, 2023
  */
 @SpringBootTest
-@Testcontainers
+@Import(TestContainersConfiguration.class)
 @ActiveProfiles("test")
 public class AccountServiceIT {
     @Autowired
