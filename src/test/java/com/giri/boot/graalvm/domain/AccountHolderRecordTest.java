@@ -9,24 +9,24 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @author pottepalemg
  * created May 08, 2023
  */
-public class AccountHolderTest {
+public class AccountHolderRecordTest {
     @Test
     void assertj_examine_object() {
         // given
-        AccountHolder accountHolder = new AccountHolder(
+        AccountHolderRecord accountHolder = new AccountHolderRecord(
             "Giri",
             "Potte",
             List.of(
-                new Address("43 Bella Rd", null, "Sharon", "MA", "02067"),
-                new Address("85 Stillwater Rd", null, "Canton", "MA", "02021")
+                new AddressRecord("43 Bella Rd", null, "Sharon", "MA", "02067"),
+                new AddressRecord("85 Stillwater Rd", null, "Canton", "MA", "02021")
             )
         );
 
         // verify
         assertThat(accountHolder)
             .hasNoNullFieldsOrProperties()
-            .returns("Giri", AccountHolder::firstName)
-            .returns("Potte", AccountHolder::lastName)
+            .returns("Giri", AccountHolderRecord::firstName)
+            .returns("Potte", AccountHolderRecord::lastName)
             .extracting("addresses").isNotNull().asList().hasSize(2);
 
     }
@@ -34,12 +34,12 @@ public class AccountHolderTest {
     @Test
     void assertj_verify() {
         // given
-        AccountHolder accountHolder = new AccountHolder(
+        AccountHolderRecord accountHolder = new AccountHolderRecord(
             "Giri",
             "Potte",
             List.of(
-                new Address("43 Bella Rd", null, "Sharon", "MA", "02067"),
-                new Address("85 Stillwater Rd", null, "Canton", "MA", "02021")
+                new AddressRecord("43 Bella Rd", null, "Sharon", "MA", "02067"),
+                new AddressRecord("85 Stillwater Rd", null, "Canton", "MA", "02021")
             )
         );
 

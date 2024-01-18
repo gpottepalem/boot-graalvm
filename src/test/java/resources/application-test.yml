@@ -2,6 +2,15 @@ app:
   greeting:
     message: running in Test
 
+spring:
+#  datasource:
+#    driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
+#    url: jdbc:tc:postgresql:16.0:///boot_graalvm_test
+#    username: boot_graalvm_test
+#    password: s3cr3t
+#  flyway:
+#    enabled: true
+
 logging:
   level:
     root: INFO

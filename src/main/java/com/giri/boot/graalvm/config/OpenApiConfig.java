@@ -1,4 +1,4 @@
-package com.giri.boot.graalvm.configuration;
+package com.giri.boot.graalvm.config;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;

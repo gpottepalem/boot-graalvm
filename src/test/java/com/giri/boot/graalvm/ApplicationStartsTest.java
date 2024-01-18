@@ -18,7 +18,8 @@ public class ApplicationStartsTest {
             new String[]{
                 "--spring.profiles.active=local",
                 "--spring.docker.compose.skip.in-tests=false",
-                "--spring.docker.compose.file=docker/docker-compose.yaml"
+                "--spring.docker.compose.file=docker/docker-compose.yaml",
+                "--spring.flyway.enabled=false"
             }
         );
     }

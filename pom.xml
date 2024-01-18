@@ -12,7 +12,7 @@
     <artifactId>boot-graalvm</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>boot-graalvm</name>
-    <description>GraalVm project for Spring Boot</description>
+    <description>GraalVm Spring Boot Application</description>
     <properties>
         <java.version>21</java.version>
         <spring.boot.version>${parent.version}</spring.boot.version>
@@ -63,6 +63,10 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
         </dependency>
 
         <!-- unit/integrations testing dependencies -->

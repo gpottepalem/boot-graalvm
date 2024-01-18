@@ -5,14 +5,14 @@ spring:
 
   docker:
     compose:
+      enabled: true
       file: docker/docker-compose.yaml
-
-  datasource:
-    driver-class-name: org.postgresql.Driver
-    url: jdbc:postgres://localhost/boot-graalvm
-    username: postgres
-    password: s3cr3t
 
 app:
   greeting:
     message: running in Local
+
+management:
+  endpoint:
+    env:
+      show-values: always

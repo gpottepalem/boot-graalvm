@@ -5,9 +5,10 @@ import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
 import org.springframework.context.annotation.Bean;
 import org.testcontainers.containers.PostgreSQLContainer;
-import org.testcontainers.utility.DockerImageName;
 
 /**
+ * Test Configuration for testcontainers.
+ *
  * @author pottepalemg
  * created Dec 06, 2023
  */
@@ -15,16 +16,17 @@ import org.testcontainers.utility.DockerImageName;
 @Slf4j
 public class TestContainersConfiguration {
     // https://codereviewvideos.com/postgres-16-docker-workaround-program-postgres-is-needed-by-initdb/
-    private static final String POSTGRES_IMAGE_TAG = "postgres:16"; // Issue: postgres:latest or postgres:16, 16-alpine
+    private static final String POSTGRES_IMAGE_TAG = "postgres:16.0"; // Issue: postgres:latest or postgres:16, 16-alpine
 
     @Bean
     @ServiceConnection
     PostgreSQLContainer<?> postgreSQLContainer() {
         log.info("PostgreSQLContainer bean...");
 
-        return new PostgreSQLContainer<>(DockerImageName.parse(POSTGRES_IMAGE_TAG))
+        return new PostgreSQLContainer<>(POSTGRES_IMAGE_TAG)
                    .withDatabaseName("boot-graalvm")
                    .withUsername("postgres")
-                   .withPassword("s3cr3t");
+                   .withPassword("s3cr3t")
+                   .withReuse(true);
     }
 }

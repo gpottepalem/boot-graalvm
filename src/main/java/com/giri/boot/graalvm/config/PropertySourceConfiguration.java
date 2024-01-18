@@ -1,4 +1,4 @@
-package com.giri.boot.graalvm.configuration;
+package com.giri.boot.graalvm.config;
 
 /**
  * Registers various property source files.

@@ -9,7 +9,7 @@ import java.util.List;
  * @author pottepalemg
  * created May 08, 2023
  */
-public record AccountHolder(
+public record AccountHolderRecord(
     @NotNull
     @Schema(example = "John", type = "string")
     String firstName,
@@ -19,5 +19,5 @@ public record AccountHolder(
     String lastName,
 
     @NotNull
-    List<Address> addresses) {
+    List<AddressRecord> addresses) {
 }
