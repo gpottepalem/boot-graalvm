@@ -1,13 +1,28 @@
 spring:
   application:
     name: @project.name@
+  docker:
+    compose:
+      enabled: false
+      profiles:
+        active:
+          - local
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
 
-# custom property for banner
-app:
-  version: @project.version@
+info:
+  app:
+    name: ${spring.application.name}
+    description: GraalVm Spring Boot Application
+    version: '@project.version@'
+    spring-boot-version: '@project.parent.version@'
+    spring-cloud-version: '@spring-cloud.version@'
 
 management:
   info:
+    env:
+      enabled: true
     java:
       enabled: true
     git:

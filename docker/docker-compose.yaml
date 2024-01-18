@@ -1,9 +1,13 @@
+version: '3'
+
 services:
-  postgres:
+  PostgreSQL16:
     image: 'postgres:16.0'
+    ports:
+      - '5222:5432'
     environment:
       - 'POSTGRES_DB=boot-graalvm'
       - 'POSTGRES_USER=postgres'
       - 'POSTGRES_PASSWORD=s3cr3t'
-    ports:
-      - '5432:5432'
+    volumes:
+      - ./init-database.sh:/docker-entrypoint-initdb.d/init-database.sh

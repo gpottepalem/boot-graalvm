@@ -1,7 +1,7 @@
 package com.giri.boot.graalvm.service;
 
 import com.giri.boot.graalvm.domain.Account;
-import com.giri.boot.graalvm.domain.Transaction;
+import com.giri.boot.graalvm.domain.TransactionRecord;
 import com.giri.boot.graalvm.domain.TransactionType;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +24,7 @@ public class AccountServiceImpl implements AccountService{
      * @param transaction
      * @return the updated account
      */
-    private Account transact(Transaction transaction) {
+    private Account transact(TransactionRecord transaction) {
         switch (transaction.transactionType()) {
             case WITHDRAWAL -> {
                 var balance = transaction.account().getBalance();
@@ -47,7 +47,7 @@ public class AccountServiceImpl implements AccountService{
      * @return
      */
     private Account executeAccountTransaction(Account account, TransactionType transactionType, BigDecimal amount) {
-        return transact(new Transaction(account, transactionType, amount));
+        return transact(new TransactionRecord(account, transactionType, amount));
     }
 
     @Override

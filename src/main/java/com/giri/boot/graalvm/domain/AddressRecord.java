@@ -7,7 +7,7 @@ import jakarta.validation.constraints.NotNull;
  * @author pottepalemg
  * created May 08, 2023
  */
-public record Address(
+public record AddressRecord(
     @NotNull
     @Schema(example = "85 Stillwater Rd", type = "string")
     String address1,

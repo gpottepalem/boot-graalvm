@@ -13,7 +13,7 @@ Project      : Maven 3.9.6
 Languge      : Java 21  
 Spring Boot  : 3.2.1
 Packaging    : Jar
-Dependencies : Lombok, GraalVM Native Support, Spring Web, Testcontainers
+Dependencies : Lombok, GraalVM Native Support, Spring Web, Testcontainers, Docker Compose, JPA
 ```
 # Getting Started
 
