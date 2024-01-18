@@ -11,3 +11,5 @@ services:
       - 'POSTGRES_PASSWORD=s3cr3t'
     volumes:
       - ./init-database.sh:/docker-entrypoint-initdb.d/init-database.sh
+    labels:
+      org.springframework.boot.readiness-check.tcp.disable: true
