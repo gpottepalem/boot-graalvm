@@ -4,6 +4,7 @@ import com.giri.boot.graalvm.config.TestContainersConfiguration;
 import com.giri.boot.graalvm.controller.HelloController;
 import com.giri.boot.graalvm.service.AccountService;
 import com.giri.boot.graalvm.service.AccountServiceImpl;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -39,6 +40,7 @@ class GraalVmApplicationIT {
     PostgreSQLContainer postgreSQLContainer;
 
     @Test
+    @DisplayName("An integration Smoke Test to ensure that the application contetx loads and autowiring works.")
     void smokeTest_context_loads_and_autowiring_works() {
         assertThat(applicationContext).isNotNull();
         assertThat(helloController).isNotNull();
