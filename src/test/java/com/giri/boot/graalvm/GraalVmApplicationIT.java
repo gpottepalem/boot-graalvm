@@ -20,10 +20,12 @@ import static org.assertj.core.api.Assertions.*;
  * @author pottepalemg
  * created Nov 17, 2023
  */
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
+    useMainMethod = SpringBootTest.UseMainMethod.ALWAYS // Get the main method coverage by this from this smoke test
+)
 @Import(TestContainersConfiguration.class)
 @ActiveProfiles("test")
-public class GraalVmApplicationIT {
+class GraalVmApplicationIT {
     @Autowired
     ApplicationContext applicationContext;
 
@@ -37,13 +39,13 @@ public class GraalVmApplicationIT {
     PostgreSQLContainer postgreSQLContainer;
 
     @Test
-    void context_loads_and_autowiring_works() {
+    void smokeTest_context_loads_and_autowiring_works() {
         assertThat(applicationContext).isNotNull();
         assertThat(helloController).isNotNull();
         assertThat(accountService).isNotNull();
 
-        var accountService = applicationContext.getBean(AccountService.class);
-        assertThat(accountService).isInstanceOf(AccountServiceImpl.class);
+        var service = applicationContext.getBean(AccountService.class);
+        assertThat(service).isInstanceOf(AccountServiceImpl.class);
         assertThat(postgreSQLContainer).isInstanceOf(PostgreSQLContainer.class);
     }
 
