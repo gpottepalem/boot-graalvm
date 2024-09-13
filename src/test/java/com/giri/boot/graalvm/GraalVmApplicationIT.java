@@ -40,7 +40,7 @@ class GraalVmApplicationIT {
     PostgreSQLContainer postgreSQLContainer;
 
     @Test
-    @DisplayName("An integration Smoke Test to ensure that the application contetx loads and autowiring works.")
+    @DisplayName("An integration Smoke Test to ensure that the application context loads and autowiring works.")
     void smokeTest_context_loads_and_autowiring_works() {
         assertThat(applicationContext).isNotNull();
         assertThat(helloController).isNotNull();
